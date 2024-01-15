@@ -51,7 +51,16 @@ public record MarginPosition
     /// Base Profit
     /// </summary>
     public decimal BaseProfit { get; set; }
+
+    /// <summary>
+    /// Index of the candle open
+    /// </summary>
+    public int CandleOpenIndex { get; set; }
     
+    /// <summary>
+    /// Index of the candle close position
+    /// </summary>
+    public int CandleCloseIndex { get; set; }
     
     /// <summary>
     /// Shortcut function for GeneratePosition witout specifying the amount.

@@ -21,12 +21,17 @@ internal static class MarginAccess
             state.BaseBalance,
             state.QuoteBalance,
             state.SetupConfig.MarginLeverageRatio,
-            state.SetupConfig.MarginLiquidationRatio);
-
+            state.SetupConfig.MarginLiquidationRatio
+        );
+        
+        pos.CandleOpenIndex = state.CurrentCandleIndex;
+        
         // Log it
         string positionTypeStr = marginType == TradeType.MarginLong ? "long" : "short";
         LogHandler.AddLogEntry(
-            state, $"Opening margin {positionTypeStr} (id: {selectedMarginId}) at price {candlePrice} borrowing {pos.BorrowedAmount}");
+            state, $"Opening margin {positionTypeStr} (id: {selectedMarginId}) at price {candlePrice} borrowing {pos.BorrowedAmount}",
+            candleIndex: state.CurrentCandleIndex
+        );
 
         // Add it to dictionary and prepare next position id
         state.MarginTrades.Add(selectedMarginId, pos);
@@ -61,7 +66,7 @@ internal static class MarginAccess
         state.MarginTrades[positionId].MarkAsClosed();
         state.MarginTrades[positionId].QuoteProfit = quoteProfit;
         state.MarginTrades[positionId].BaseProfit = baseProfit;
-        
+        state.MarginTrades[positionId].CandleCloseIndex = state.CurrentCandleIndex;
         state.BaseBalance = newBase;
         state.QuoteBalance = newQuote;
     }
