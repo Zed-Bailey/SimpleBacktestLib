@@ -54,11 +54,14 @@ internal static class MarginAccess
         decimal quoteProfit = newQuote - state.QuoteBalance;
         string liquidness = isLiquid ? "liquid" : "illiquid";
         LogHandler.AddLogEntry(state,
-            $"Closed {liquidness} margin position {positionId} with profit {baseProfit} Base Asset and {quoteProfit} Quote Asset",
+            $"Closed {liquidness} margin position {positionId} with profit {baseProfit:F3} Base Asset and {quoteProfit:F3} Quote Asset",
             state.CurrentCandleIndex, isLiquid ? LogLevel.Information : LogLevel.Warning);
 
         // Close the position and take profit/loss
         state.MarginTrades[positionId].MarkAsClosed();
+        state.MarginTrades[positionId].QuoteProfit = quoteProfit;
+        state.MarginTrades[positionId].BaseProfit = baseProfit;
+        
         state.BaseBalance = newBase;
         state.QuoteBalance = newQuote;
     }

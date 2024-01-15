@@ -42,7 +42,17 @@ public record MarginPosition
     /// </summary>
     public bool IsClosed { get; private set; } = false;
 
-
+    /// <summary>
+    /// Quote Profit
+    /// </summary>
+    public decimal QuoteProfit { get; set; }
+    
+    /// <summary>
+    /// Base Profit
+    /// </summary>
+    public decimal BaseProfit { get; set; }
+    
+    
     /// <summary>
     /// Shortcut function for GeneratePosition witout specifying the amount.
     /// Instead, values from setup definition can be passed in to get the approperiate amount.
