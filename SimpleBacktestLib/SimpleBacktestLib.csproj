@@ -14,18 +14,18 @@
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
-  <ItemGroup>
-    <None Include="..\README.md">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+<!--  <ItemGroup>-->
+<!--    <None Include="..\README.md">-->
+<!--      <Pack>True</Pack>-->
+<!--      <PackagePath>\</PackagePath>-->
+<!--    </None>-->
+<!--  </ItemGroup>-->
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="7.0.0" />
   </ItemGroup>
 
-  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-	<Exec Command="dotnet pack &quot;$(SolutionDir)SimpleBacktestLib/SimpleBacktestLib.csproj&quot; -p:PackageVersion=$([System.DateTime]::Now.ToString(&quot;yyyy.MM.dd.HHmm&quot;)) --no-build --configuration $(Configuration) --output &quot;$(SolutionDir)nuget&quot;" />
-  </Target>
+<!--  <Target Name="PostBuild" AfterTargets="PostBuildEvent">-->
+<!--	<Exec Command="dotnet pack &quot;$(SolutionDir)SimpleBacktestLib/SimpleBacktestLib.csproj&quot; -p:PackageVersion=$([System.DateTime]::Now.ToString(&quot;yyyy.MM.dd.HHmm&quot;)) &#45;&#45;no-build &#45;&#45;configuration $(Configuration) &#45;&#45;output &quot;$(SolutionDir)nuget&quot;" />-->
+<!--  </Target>-->
 </Project>
